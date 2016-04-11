@@ -194,3 +194,45 @@ def tetradic(color):
 
 def doubleComplementary(colorOne, colorTwo):
     return complementary(colorOne), complementary(colorTwo)
+
+
+# ----------------------------------------------------------
+# monochromatic functions
+# ----------------------------------------------------------
+
+def desaturate(color, percent=10):
+    return color[0], (color[1] - percent) % 100, color[2]
+
+
+def saturate(color, percent=10):
+    return color[0], (color[1] + percent) % 100, color[2]
+
+
+def lighter(color, percent=10):
+    """
+    Get a lighter tone. Default = 10%
+    :param color tuple in hsl absolute values (0-360,0-100,0-100)
+    :param percent int 0-99
+    """
+    return color[0], color[1], (color[2] + percent) % 100
+
+
+def darker(color, percent=10):
+    """
+    Get a darker tone. Default = 10%.
+    :param color tuple in hsl absolute values (0-360,0-100,0-100)
+    :param percent int 0-99
+    """
+    return color[0], color[1], (color[2] - percent) % 100
+
+
+def mono(color, percent=10):
+    """
+    Get four tints-shades from color.
+    Assumed percent = 10%. Also it won't return black or white,
+    keep turning the wheel.
+    :param color tuple in hsl absolute values (0-360,0-100,0-100)
+    :param percent int 0-99
+    """
+
+    return lighter(color, percent), lighter(color, percent * 2), darker(color, percent), darker(color, percent * 2)

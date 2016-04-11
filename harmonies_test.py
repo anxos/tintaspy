@@ -127,9 +127,25 @@ class HarmoniesTestCase(unittest.TestCase):
                          ((120, 69.6, 51), (210, 69.6, 51), (300, 69.6, 51)))
 
     def test_double_complementary(self):
-        self.assertEqual(harmonies.doubleComplementary((30, 69.6, 51), (180, 69.6,51)),
+        self.assertEqual(harmonies.doubleComplementary((30, 69.6, 51), (180, 69.6, 51)),
                          ((210, 69.6, 51), (0, 69.6, 51)))
 
+    def test_mono(self):
+        self.assertEqual(harmonies.mono((30, 69.6, 51)),
+                         ((30, 69.6, 61), (30, 69.6, 71), (30, 69.6, 41), (30, 69.6, 31)))
 
+    def test_lighter(self):
+        self.assertEqual(harmonies.lighter((30, 69.6, 51), 20), (30, 69.6, 71))
+
+    def test_darker(self):
+        self.assertEqual(harmonies.darker((30, 69.6, 51.6), 20), (30, 69.6, 31.6))
+
+    def test_desaturate_red(self):
+        self.assertAlmostEqual(harmonies.desaturate((0, 100, 50), 20), (0, 80, 50), places=4)
+
+    def test_saturate_red(self):
+        self.assertAlmostEqual(harmonies.saturate((0, 100, 50), 20), (0, 20, 50), places=4)
+
+        
 if __name__ == '__main__':
     unittest.main()
