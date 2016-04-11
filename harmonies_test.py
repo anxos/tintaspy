@@ -112,6 +112,24 @@ class HarmoniesTestCase(unittest.TestCase):
     def test_split_complementary_orange(self):
         self.assertEqual(harmonies.splitComplementary((30, 69.6, 51)), ((180, 69.6, 51), (240, 69.6, 51)))
 
+    def test_analogous_orange(self):
+        self.assertEqual(harmonies.analogous((30, 69.6, 51)), ((60, 69.6, 51), (0, 69.6, 51)))
+
+    def test_analogous_cyan(self):
+        self.assertEqual(harmonies.analogous((180, 69.6, 51), 4),
+                         ((210, 69.6, 51), (150, 69.6, 51), (240, 69.6, 51), (120, 69.6, 51)))
+
+    def test_triadic(self):
+        self.assertEqual(harmonies.triadic((30, 69.6, 51)), ((150, 69.6, 51), (270, 69.6, 51)))
+
+    def test_tetradic(self):
+        self.assertEqual(harmonies.tetradic((30, 69.6, 51)),
+                         ((120, 69.6, 51), (210, 69.6, 51), (300, 69.6, 51)))
+
+    def test_double_complementary(self):
+        self.assertEqual(harmonies.doubleComplementary((30, 69.6, 51), (180, 69.6,51)),
+                         ((210, 69.6, 51), (0, 69.6, 51)))
+
 
 if __name__ == '__main__':
     unittest.main()

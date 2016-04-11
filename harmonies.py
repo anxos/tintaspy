@@ -150,3 +150,47 @@ def splitComplementary(color):
     first = (color[0] + 150) % 360, color[1], color[2]
     second = (color[0] + 210) % 360, color[1], color[2]
     return first, second
+
+
+def analogous(color, colors=2):
+    """
+    Get a set of adjacent colors: 2 or 4
+    Colors are considered to be separated by 30º
+    :param color tuple in hsl absolute values (0-360,0-100,0-100)
+    :param colors int 2 or 4
+    """
+    one = (color[0] + 30) % 360, color[1], color[2]
+    two = (color[0] - 30) % 360, color[1], color[2]
+    three = (color[0] + 60) % 360, color[1], color[2]
+    four = (color[0] - 60) % 360, color[1], color[2]
+    if colors == 2:
+        return one, two
+    else:
+        return one, two, three, four
+
+
+def triadic(color):
+    """
+    Get a triad of evenly distributed colors:
+    the original + two more
+    :param color tuple in hsl absolute values (0-360,0-100,0-100)
+    """
+    one = (color[0] + 120) % 360, color[1], color[2]
+    two = (color[0] + 240) % 360, color[1], color[2]
+    return one, two
+
+
+def tetradic(color):
+    """
+    Get four colors evenly distributed:
+    the original + three more
+    :param color tuple in hsl absolute values (0-360,0-100,0-100)
+    """
+    one = (color[0] + 90) % 360, color[1], color[2]
+    two = (color[0] + 180) % 360, color[1], color[2]
+    three = (color[0] + 270) % 360, color[1], color[2]
+    return one, two, three
+
+
+def doubleComplementary(colorOne, colorTwo):
+    return complementary(colorOne), complementary(colorTwo)
